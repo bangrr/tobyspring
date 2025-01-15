@@ -27,7 +27,6 @@ public class JdbcOrderRepository implements OrderRepository {
     @Override
     public void save(Order order) {
         Long id = jdbcClient.sql("select next value for orders_SEQ").query(Long.class).single();
-        System.out.println("id = " + id);
         order.setId(id);
 
         jdbcClient.sql("insert into orders (no,total,id) values (?,?,?)")
